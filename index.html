@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Anton|BioRhyme+Expanded" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body class="back">
+    <div class="header"><h1>The Psychic Game</h1></div>
+    <h2>Guess What Letter I'm Thinking Of</h2>
+
+            <div class="results"><p class="data">Wins: <span id="win"></span></p></div>
+            <div class="results"><p class="data">Losses: <span id="loss"></span></p></div>
+            <div class="results"><p class="data">Guesses Left: <span id="guessesLeft"></span></p></div>
+            <div class="results"><p class="data">Just Guessed: <span id="guessed"></span></p></div>
+            <div id="youWin">YOU WIN!</div>
+            <div id="youLose">YOU LOSE!</div>
+
+    <script>
+        document.getElementById("youWin").style.display = "none";
+        document.getElementById("youLose").style.display = "none";
+
+    var computerChoice = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" ];
+    var win = 0;
+    var loss = 0;
+    var guessesLeft = 10;
+
+    document.onkeyup = function(event) {
+        var userGuess = event.key;
+        var computerGuess = computerChoice[Math.floor(Math.random() * computerChoice.length)];
+        var h = document.createElement("p");
+        var t = document.createTextNode(userGuess);
+        h.appendChild(t);
+        document.body.appendChild(h);
+
+        
+
+        if(userGuess === computerGuess){
+            win = win + 1;
+        }
+
+        //if(guessesLeft ===0){
+           
+        //}
+
+        if(userGuess){
+            guessesLeft = guessesLeft - 1;
+
+        }
+
+        if(guessesLeft === 0){
+            //location.reload();
+            loss = loss + 1;
+            setTimeout("location.reload(true);",1000);
+        }
+
+
+
+
+        document.querySelector("#win").innerHTML = win;
+        document.querySelector("#loss").innerHTML = loss;
+        document.querySelector("#guessesLeft").innerHTML = guessesLeft;
+        document.querySelector("#guessed").innerHTML = userGuess;
+    }
+    
+        
+    
+    </script>
+
+</body>
+</html>
